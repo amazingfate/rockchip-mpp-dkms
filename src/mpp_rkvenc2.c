@@ -2188,7 +2188,11 @@ static int rkvenc2_free_rcbbuf(struct platform_device *pdev, struct rkvenc_dev *
 	return 0;
 }
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 11, 0)
+static void rkvenc_remove(struct platform_device *pdev)
+#else
 static int rkvenc_remove(struct platform_device *pdev)
+#endif
 {
 	struct device *dev = &pdev->dev;
 	struct device_node *np = dev->of_node;
@@ -2219,7 +2223,9 @@ static int rkvenc_remove(struct platform_device *pdev)
 		rkvenc_procfs_remove(mpp);
 	}
 
+#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 11, 0)
 	return 0;
+#endif
 }
 
 static void rkvenc_shutdown(struct platform_device *pdev)
