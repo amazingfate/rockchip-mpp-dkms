@@ -1408,7 +1408,11 @@ next:
 			goto session_switch_done;
 
 		f = fdget(bat_msg.fd);
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 12, 0)
+		if (!fd_file(f)) {
+#else
 		if (!f.file) {
+#endif
 			int ret = -EBADF;
 
 			mpp_err("fd %d get session failed\n", bat_msg.fd);
@@ -1429,10 +1433,18 @@ next:
 		}
 
 		/* switch session */
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 12, 0)
+		session = fd_file(f)->private_data;
+#else
 		session = f.file->private_data;
+#endif
 		msgs = get_task_msgs(session);
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 12, 0)
+		if (fd_file(f)->private_data == session)
+#else
 		if (f.file->private_data == session)
+#endif
 			msgs->ext_fd = bat_msg.fd;
 
 		msgs->f = f;
