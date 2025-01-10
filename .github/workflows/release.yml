@@ -65,7 +65,7 @@ jobs:
           tag_name: ${{ env.version }}
           body_path: README.md
           token: ${{ secrets.GITHUB_TOKEN }}
-          target_commitish: main
+          target_commitish: master
           draft: false
           fail_on_unmatched_files: false
           files: |
