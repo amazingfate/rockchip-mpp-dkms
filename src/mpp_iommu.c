@@ -25,7 +25,11 @@
 #include "mpp_debug.h"
 #include "mpp_iommu.h"
 
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 13, 0)
+MODULE_IMPORT_NS("DMA_BUF");
+#else
 MODULE_IMPORT_NS(DMA_BUF);
+#endif
 
 static struct mpp_dma_buffer *
 mpp_dma_find_buffer_fd(struct mpp_dma_session *dma, int fd)
