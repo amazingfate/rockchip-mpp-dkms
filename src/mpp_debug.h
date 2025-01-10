@@ -12,6 +12,7 @@
 #define __ROCKCHIP_MPP_DEBUG_H__
 
 #include <linux/types.h>
+#include <linux/version.h>
 
 /*
  * debug flag usage:
