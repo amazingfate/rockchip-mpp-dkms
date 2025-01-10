@@ -1,0 +1,3 @@
+#!/usr/bin/dh-exec
+
+src usr/src/rk_vcodec-${DEB_VERSION}/

@@ -1,0 +1,17 @@
+Source: rockchip-mpp
+Maintainer: Jianfeng Liu <liujianfeng1994@gmail.com>
+Section: misc
+Priority: optional
+Standards-Version: 4.6.0
+Build-Depends: debhelper (>=12~),
+               devscripts,
+               dh-exec,
+               dh-sequence-dkms,
+               lintian
+
+Package: rockchip-mpp-dkms
+Architecture: all
+Section: misc
+Priority: optional
+Depends: ${misc:Depends}
+Description: dkms sources for Rockchip MPP
