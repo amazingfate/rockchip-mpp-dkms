@@ -487,6 +487,8 @@ static const struct of_device_id mpp_dt_ids[] = {
 	{ },
 };
 
+MODULE_DEVICE_TABLE(of, mpp_dt_ids);
+
 static struct platform_driver mpp_service_driver = {
 	.probe = mpp_service_probe,
 	.remove = mpp_service_remove,

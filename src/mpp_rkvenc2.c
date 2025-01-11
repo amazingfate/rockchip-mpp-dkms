@@ -1839,6 +1839,8 @@ static const struct of_device_id mpp_rkvenc_dt_match[] = {
 	{},
 };
 
+MODULE_DEVICE_TABLE(of, mpp_rkvenc_dt_match);
+
 static int rkvenc_ccu_probe(struct platform_device *pdev)
 {
 	struct rkvenc_ccu *ccu;
@@ -1876,7 +1878,7 @@ static int rkvenc_attach_ccu(struct device *dev, struct rkvenc_dev *enc)
 
 	ccu = platform_get_drvdata(pdev);
 	if (!ccu)
-		return -ENOMEM;
+		return -EPROBE_DEFER;
 
 	INIT_LIST_HEAD(&enc->core_link);
 	mutex_lock(&ccu->lock);
